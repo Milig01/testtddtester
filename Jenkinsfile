@@ -1,7 +1,8 @@
 pipeline {
     agent { label 'windows' }
     environment {
-        DOCKER_IMAGE = "milig/testtddtester:latest"
+        KUBE_CONFIG = 'C:/Users/mig/.kube/config'
+        DOCKER_IMAGE = 'milig/testtddtester:latest'
     }
     stages {
         stage('Checkout') {
