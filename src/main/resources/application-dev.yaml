@@ -8,4 +8,6 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
+  liquibase:
+    change-log: db/changelog/db.changelog-dev.yaml

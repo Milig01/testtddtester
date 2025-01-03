@@ -1,4 +1,6 @@
-FROM ubuntu:latest
-LABEL authors="mig"
+FROM openjdk:23-jdk-slim
+WORKDIR /app
 
-ENTRYPOINT ["top", "-b"]
+COPY target/*.jar app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

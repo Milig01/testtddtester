@@ -1,0 +1,81 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735753870793-1
+      author: milig
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 50
+            sequenceName: PRODUCT_SEQ
+            startValue: 1
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_1
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: DESCRIPTION
+                  type: VARCHAR(255)
+              - column:
+                  name: NAME
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: PRICE
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: QUANTITY
+                  type: INT
+            tableName: PRODUCT
+  - changeSet:
+      id: 1735753870793-2
+      author: milig
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: ID
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+            tableName: test
+  - changeSet:
+      id: 1735753870793-3
+      author: milig
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addPrimaryKey:
+            columnNames: ID
+            constraintName: test_key
+            tableName: test
+        - createSequence:
+            incrementBy: 50
+            sequenceName: TEST_SEQ
+            startValue: 1
+  - changeSet:
+      id: 1735753870793-4
+      author: milig
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropTable:
+            tableName: test
+  - changeSet:
+      id: 1735753870793-5
+      author: milig
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropSequence:
+            sequenceName: TEST_SEQ

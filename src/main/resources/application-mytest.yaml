@@ -1,0 +1,9 @@
+spring:
+  application:
+    name:
+      - TestTDDTester
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  liquibase:
+    enabled: false

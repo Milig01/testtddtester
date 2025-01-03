@@ -18,6 +18,11 @@ spec:
       containers:
         - name: testtddtester
           image: milig/testtddtester:latest
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "dev"
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:h2:tcp://host.minikube.internal/~/test
           ports:
             - containerPort: 80
               protocol: TCP
