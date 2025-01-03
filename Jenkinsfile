@@ -26,7 +26,7 @@ pipeline {
           steps {
             script {
               docker.withTool('docker') { //Используйте dockerTool
-                docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB) {
+                docker.withRegistry(DOCKER_HUB) {
                   docker.build(DOCKER_IMAGE, '.').push()
                 }
               }
