@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testtddtester
+  labels:
+    app: testtddtester
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testtddtester
+  template:
+    metadata:
+      name: testtddtester
+      labels:
+        app: testtddtester
+    spec:
+      containers:
+        - name: testtddtester
+          image: milig/testtddtester:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always

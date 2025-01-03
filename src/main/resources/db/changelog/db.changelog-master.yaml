@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1735753870793-1
+      author: mig
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 50
+            sequenceName: PRODUCT_SEQ
+            startValue: 1
+  - changeSet:
+      id: 1735753870793-2
+      author: mig
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_1
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: DESCRIPTION
+                  type: VARCHAR(255)
+              - column:
+                  name: NAME
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: PRICE
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: QUANTITY
+                  type: INT
+            tableName: PRODUCT
+

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name:
+      - TestTDDTester
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
