@@ -1,43 +1,30 @@
 pipeline {
-    agent any
-
+    agent { label 'windows' }
     environment {
-        DOCKER_IMAGE = "milig/testtddtester:latest" //Замените на имя вашего образа
-        KUBE_CONFIG = credentials('minikube-config') // Замените на ID credentials
-        DOCKER_HUB = credentials('docker-hub-credentials') // Замените на ID credentials
+        DOCKER_IMAGE = "milig/testtddtester:latest"
     }
-
-    tools {
-        maven 'Maven 3.9' // Укажите имя Maven из настроек Jenkins
-    }
-
     stages {
-//         stage('Checkout') {
-//             steps {
-//                 git url: 'https://github.com/<ваше_имя_пользователя>/<ваш_репозиторий>.git', branch: 'main' //Укажите путь к вашему репозиторию
-//             }
-//         }
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Milig01/testtddtester.git', branch: 'main'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn clean install'
             }
         }
         stage('Build Docker Image') {
-          steps {
-            script {
-              docker.withTool('docker') { //Используйте dockerTool
-                docker.withRegistry(DOCKER_HUB) {
-                  docker.build(DOCKER_IMAGE, '.').push()
-                }
-              }
+            steps {
+                sh "docker build -t ${DOCKER_IMAGE} ."
+                sh "docker push ${DOCKER_IMAGE}"
             }
-          }
         }
         stage('Deploy to Minikube') {
             steps {
-               script {
-                  kubernetesDeploy(kubeconfig: KUBE_CONFIG, manifestFiles: 'deployment.yaml')
-               }
+                script {
+                    kubernetesDeploy(kubeconfig: KUBE_CONFIG, manifestFiles: 'deployment.yaml')
+                }
             }
         }
     }
