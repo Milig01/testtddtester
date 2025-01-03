@@ -23,9 +23,7 @@ pipeline {
         }
         stage('Deploy to Minikube') {
             steps {
-                script {
-                    kubernetesDeploy(kubeconfig: KUBE_CONFIG, manifestFiles: 'deployment.yaml')
-                }
+                kubernetesDeploy(kubeconfig: KUBE_CONFIG, manifestFiles: 'deployment.yaml')
             }
         }
     }
