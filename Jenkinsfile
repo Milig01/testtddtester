@@ -11,13 +11,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${DOCKER_IMAGE} ."
-                sh "docker push ${DOCKER_IMAGE}"
+                bat "docker build -t ${DOCKER_IMAGE} ."
+                bat "docker push ${DOCKER_IMAGE}"
             }
         }
         stage('Deploy to Minikube') {
